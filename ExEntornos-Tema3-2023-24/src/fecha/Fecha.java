@@ -3,6 +3,8 @@ package fecha;
  * Clase Fecha
  */
 public class Fecha {
+	private static final int DIEZ = 10;
+
 	/**
 	 * Atributo privado que indicará el día.
 	 */
@@ -46,22 +48,23 @@ public class Fecha {
 		boolean diaCorrecto, mesCorrecto, anioCorrecto;
 		anioCorrecto = a > 0;
 		mesCorrecto = m >= 1 && m <= 12;
+		boolean diaMayor1 = d >= 1;
 		switch (m) {
 		case 2:
 			if (esBisiesto()) {
-				diaCorrecto = d >= 1 && d <= 29;
+				diaCorrecto = diaMayor1 && d <= 29;
 			} else {
-				diaCorrecto = d >= 1 && d <= 28;
+				diaCorrecto = diaMayor1 && d <= 28;
 			}
 			break;
 		case 4:
 		case 6:
 		case 9:
 		case 11:
-			diaCorrecto = d >= 1 && d <= 30;
+			diaCorrecto = diaMayor1 && d <= 30;
 			break;
 		default:
-			diaCorrecto = d >= 1 && d <= 31;
+			diaCorrecto = diaMayor1 && d <= 31;
 		}
 		return diaCorrecto && mesCorrecto && anioCorrecto;
 	}
@@ -78,7 +81,7 @@ public class Fecha {
 	/**
 	 * Función que incrementa en 1 el día.
 	 */
-	public void diaSiguiente() {
+	public void nextDay() {
 		d++;
 		if (!fechaCorrecta()) {
 			d = 1;
@@ -94,11 +97,11 @@ public class Fecha {
 	 * Override de método toString().
 	 */
 	public String toString() {
-		if (d < 10 && m < 10) {
+		if (d < DIEZ && m < DIEZ) {
 			return "0" + d + "-0" + m + "-" + a;
-		} else if (d < 10 && m >= 10) {
+		} else if (d < DIEZ && m >= DIEZ) {
 			return "0" + d + "-" + m + "-" + a;
-		} else if (d >= 10 && m < 10) {
+		} else if (d >= DIEZ && m < DIEZ) {
 			return d + "-0" + m + "-" + a;
 		} else {
 			return d + "-" + m + "-" + a;
