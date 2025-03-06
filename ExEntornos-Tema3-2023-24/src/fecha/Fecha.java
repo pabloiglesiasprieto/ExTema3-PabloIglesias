@@ -1,16 +1,36 @@
 package fecha;
-
+/**
+ * Clase Fecha
+ */
 public class Fecha {
-	private int d; //d�a
-	private int m; //mes
-	private int a; //a�o
-
+	/**
+	 * Atributo privado que indicará el día.
+	 */
+	private int d; //d�a
 	
+	/**
+	 * Atributo privado que indicará el mes.
+	 */
+	private int m; //mes
+	
+	/**
+	 * Atributo privado que indicará el año.
+	 */
+	private int a; //a�o
+
+	/**
+	 * Constructor de clase Fecha vacío.
+	 */
 	public Fecha() {
 
 	}
 
-	
+	/**
+	 * Constructor de clase Fecha con atributos día, mes y anio(año).
+	 * @param dia Parámetro de entrada que indicará el día.
+	 * @param mes Parámetro de entrada que indicará el mes.
+	 * @param anio Parámetro de entrada que indicará el año.
+	 */
 	public Fecha(int dia, int mes, int anio) {
 		this.d = dia;
 		this.m = mes;
@@ -18,7 +38,10 @@ public class Fecha {
 	}
 
 	
-	
+	/**
+	 * Función que indicará si la fecha dada es correcta.
+	 * @return Retorna un booleano indicando si la fecha es correcta o no.
+	 */
 	public boolean fechaCorrecta() {
 		boolean diaCorrecto, mesCorrecto, anioCorrecto;
 		anioCorrecto = a > 0;
@@ -43,13 +66,18 @@ public class Fecha {
 		return diaCorrecto && mesCorrecto && anioCorrecto;
 	}
 
-	// M�todo esBisiesto. Solo lo usa fechaCorrecta, por eso es privado
+	/**
+	 * Función privada utilizada por el método fechaCorrecta(), indica si un año es bisiesto..
+	 * @return Devuelve un booleano indicando si la fecha es bisiesta.
+	 */
 	private boolean esBisiesto() {
 		boolean esBisiesto = (a % 4 == 0 && a % 100 != 0 || a % 400 == 0);
 		return esBisiesto;
 	}
 
-	// M�todo diaSiguiente
+	/**
+	 * Función que incrementa en 1 el día.
+	 */
 	public void diaSiguiente() {
 		d++;
 		if (!fechaCorrecta()) {
@@ -62,7 +90,9 @@ public class Fecha {
 		}
 	}
 
-	// M�todo toString
+	/**
+	 * Override de método toString().
+	 */
 	public String toString() {
 		if (d < 10 && m < 10) {
 			return "0" + d + "-0" + m + "-" + a;
